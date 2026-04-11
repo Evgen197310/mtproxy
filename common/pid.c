@@ -39,8 +39,8 @@ npid_t PID;
 void init_common_PID (void) {
   if (!PID.pid) {
     int p = getpid ();
-    assert (!(p & 0xffff0000));
-    PID.pid = p;
+    // assert (!(p & 0xffff0000)); // Disabled: modern Linux PIDs can exceed 65535
+    PID.pid = p & 0xffff;
   }
   if (!PID.utime) {
     PID.utime = time (0);

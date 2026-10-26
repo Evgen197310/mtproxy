@@ -1,0 +1,7 @@
+# /etc/cron.d/mtproxy — задание обновления конфигурации прокси (update_config.sh), 03:00.
+# Сейчас ЭТА ЖЕ строка стоит в crontab root (crontab -l). Файл в репозитории — источник
+# правды на будущее; в /etc/cron.d он НЕ установлен: поставить его, не убрав строку из
+# crontab root, — значит запускать задание дважды. Переключение — одним шагом:
+# install -m 644 deploy/cron.d/mtproxy /etc/cron.d/mtproxy и удалить строку из crontab root.
+# Имя файла без точек (иначе cron.d его пропускает); формат cron.d — со столбцом пользователя.
+0 3 * * * root /opt/mtproxy/update_config.sh > /dev/null 2>&1
